@@ -79,7 +79,12 @@ class Download(App):
     def __repr__(self):
         return str(self)
 
-    def resize(self, **kwargs):
+    def resize(self, *args, **kwargs):
+        if len(args) > 0:
+            assert(len(args) == 1)
+            assert(len(kwargs) == 0)
+            self._resize = args[0]
+            return self
         self._resize = Resize(**kwargs)
         return self
 
